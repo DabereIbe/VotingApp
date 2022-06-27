@@ -1,0 +1,54 @@
+﻿@model VotingApp.Models.ViewModels.VotesViewModel
+@using Microsoft.AspNetCore.Identity
+
+@inject UserManager<AppUser> UserManager
+@{
+    ViewData["Title"] = "Voting Page";
+}
+
+<h4>Please Select Your Candidates Below</h4>
+@{
+    var totalPages = Model.TotalPages;
+    var currentPage = Model.CurrentPage;
+}
+<form asp-action="Votes" method="post">
+    <p>@Model.Position.Name</p>
+    @foreach (var obj in Model.Aspirants)
+    {
+        if (obj.PositionId == Model.Position.Id)
+        {
+
+<div style="margin-left:150px; display:inline-block">
+    <img class="rounded-circle ml-5" src="~/images/@obj.Image" width="100" height="100" asp-append-version="true" />
+    <p style="margin-left:70px">@obj.Name</p>
+    @if (obj.Votes == 1)
+    {
+        <p style="margin-left:70px">@obj.Votes Vote</p>
+    }
+    else
+    {
+        <p style="margin-left:70px">@obj.Votes Votes</p>
+    }
+    <input type="hidden" name="@obj.PositionId" value="@obj.Id" style="margin-left:75px" />
+    <button type="submit" style="margin-left:70px; margin-bottom:5px" class="btn btn-primary" asp-route-currentPage="@(currentPage + 1)" asp-route-id="@obj.Id" asp-route-username="@UserManager.GetUserName(User)" asp-action="Votes">Vote</button>
+</div>
+        }
+    }
+    <hr />
+</form>
+
+
+@*<ul class="pagination">
+    <li><a class="@(currentPage == 1? "disabled" : "") btn btn-primary mr-1" asp-action="Votes" asp-route-currentPage="1" asp-route-username="@UserManager.GetUserName(User)"><<</a></li>
+    <li><a asp-action="Votes" asp-route-currentPage="@(currentPage - 1)" asp-route-username="@UserManager.GetUserName(User)" class="@(currentPage == 1? "disabled" : "") btn btn-primary mr-1">Previous</a></li>
+    @if (Model.TotalItems != null)
+        {
+            for (int pg = currentPage; pg < Model.TotalPages; pg++)
+            {
+                <li class="@(pg == currentPage? "active" : "")"><a asp-action="Votes" asp-route-currentPage="@pg">@pg</a></li>
+
+            }
+        }
+    <li><a class="@(currentPage == totalPages ? "disabled" : "") btn btn-primary mr-1" asp-action="Votes" asp-route-currentPage="@(currentPage + 1)">Next</a></li>
+    <li><a class="@(currentPage == totalPages ? "disabled" : "") btn btn-primary" asp-action="Votes"  asp-route-currentPage="@totalPages">>></a></li>
+</ul>*@

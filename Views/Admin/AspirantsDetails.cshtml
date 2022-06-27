@@ -1,0 +1,49 @@
+﻿@model VotingApp.Models.Aspirants
+
+@{
+    ViewData["Title"] = "AspirantsDetails";
+}
+
+<h1>AspirantsDetails</h1>
+
+<div>
+    <h4>Aspirants</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+        <dd class="col-sm-10">
+            <a class="btn btn-info" href="/images/@Html.DisplayFor(model => model.Image)">View Image</a>
+        </dd>
+        
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PositionId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PositionId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Votes)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Votes)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "EditAspirants", new {  id = Model.Id  }) |
+    <a asp-action="Index">Back to List</a>
+</div>
