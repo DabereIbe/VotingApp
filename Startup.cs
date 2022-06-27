@@ -47,7 +47,7 @@ namespace VotingApp
             services.AddAuthentication().AddGoogle(options =>
             {
                 options.ClientId = "849675708782-fl7tsg86v7thi99koi22nrtj9i5pf8ie.apps.googleusercontent.com";
-                options.ClientSecret = "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";
+                options.ClientSecret = "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";
                 options.AuthorizationEndpoint += "?prompt=consent";
             });
             services.AddControllersWithViews();
