@@ -14,13 +14,11 @@ namespace VotingApp.Controllers
     {
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ApplicationDbContext _db;
-        private readonly UserManager<IdentityUser> _userManager;
 
-        public RolesController(RoleManager<IdentityRole> roleManager, ApplicationDbContext db, UserManager<IdentityUser> userManager)
+        public RolesController(RoleManager<IdentityRole> roleManager, ApplicationDbContext db)
         {
             _roleManager = roleManager;
             _db = db;
-            _userManager = userManager;
         }
 
         public IActionResult Index()
